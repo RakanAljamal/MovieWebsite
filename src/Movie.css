@@ -1,0 +1,192 @@
+.movie-grid{
+display: grid;
+grid-template-columns: repeat(4,1fr);
+justify-content: center;
+grid-row-gap: 4rem;
+}
+
+
+.inside-photo{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow: hidden;
+    height: 500px;
+}
+
+.movie-name{
+    flex: 25rem;
+}
+.movie-title{text-shadow: 3px  1px 0 #000;
+}
+.movie-desc{
+    opacity: 0;
+    visibility: hidden;
+    color:#fff;
+    overflow: hidden;
+    text-align: justify;
+    padding: 2rem;
+    position: relative;
+}
+.movie-desc::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 10vh;
+    z-index: -1;
+    opacity: 0.5;
+    background: #000;
+}
+.inside-photo{
+    position: relative;
+    transition:all 0.5s ease-in-out;
+}
+.movie-photo{
+    border: solid #f4f4f4 .5rem;
+    overflow: hidden;
+    display: inline-block;
+    margin: auto;
+    width: 300px;
+    transition:all 0.4s ease-in-out;
+
+}
+.movie-photo:hover {
+    border: .5rem solid #ff8340;
+    cursor: pointer;
+    overflow: hidden;
+    width: 400px;
+    position: relative;
+    transition:all 0.4s ease-in-out;
+
+
+}
+.movie-photo:hover .movie-desc{
+    overflow: hidden;
+    opacity: 1;
+    visibility:visible;
+    transition: all 1.4s ease-in-out;
+    z-index: 2;
+}
+.add-movie-form{
+    margin: 0px auto;
+    display: table;
+}
+.add-movie-form input,.add-movie-form button{
+    display: block;
+    background: var(--main-bg-color);
+    padding: 1rem;
+    margin:0rem 5rem 0.6rem 0rem;
+    width: 300px;
+    outline: none;
+    border:none;
+    border: var(--sec-bg-color) .1rem solid;
+    transition: all 0.5s ease-in-out;
+}
+.add-movie-form input:focus{
+    margin:1.5rem 5rem 1.5rem 0rem;
+}
+
+.add-movie-form ::placeholder{
+    color:#f4f4f4;
+    opacity: 0.4;
+}
+.add-movie-form input[type="text"]
+{
+    color:#fff;
+    font-size:24px;
+}
+.add-button{
+    color: var(--sec-bg-color);
+    margin: 1.5rem 0 5rem 0rem;
+    padding: 1rem;
+    outline: none;
+    border:none;
+    border: var(--sec-bg-color) .1rem solid;
+    background: var(--main-bg-color);
+    transition: all 0.5s ease-in-out;
+
+}
+.add-button:hover{
+    cursor: pointer;
+    background: var(--sec-bg-color);
+    color:#fff;
+    border: var(--main-bg-color) .1rem solid;
+}
+.movie-options{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 4rem;
+}
+
+.whole-movie a{
+    display: inline;
+}
+.whole-movie a:hover{
+    background: #222;
+}
+
+.movie-options i{
+    transition: all 0.4s ease-in-out;
+    display: block;
+}
+.movie-options i:hover{
+    color:var(--sec-bg-color)
+}
+.movie-options .trash:hover{
+ color:red;
+}
+
+.movie-photo-no-hover{
+    background: #000;
+    z-index: 1;
+    border: solid var(--sec-bg-color) .5rem;
+    overflow: hidden;
+    display: inline-block;
+    margin: auto;
+    width: 300px;
+    transition: all 0.5s ease;
+    padding: 1rem;
+}
+.movie-editing .form-editing input{
+    font-size: 1.2rem;
+    text-align: center;
+    width: 15.8rem;
+    border:none;
+    color:#fff;
+    padding: 0.2rem;
+    border:0.2rem #fff solid;
+    background :#222;
+    margin-top: -2rem;
+
+
+}
+.movie-editing .form-editing input:focus{
+    background: #fff;
+    color:#000;
+
+}
+.movie-editing .form-editing h1{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+.save-button{
+    border:none;
+    outline:none;
+    padding: 0.45rem;
+    font-size: 1.5rem;
+    width: 9rem;
+    border:solid 0.3rem var(--sec-bg-color);
+    background: #111;
+    color:#fff;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-top: 2rem;
+    opacity: 0.7;
+    transition:all 0.4s ease-in-out;
+}
+.save-button:hover{
+    cursor: pointer;
+    opacity: 1;
+}

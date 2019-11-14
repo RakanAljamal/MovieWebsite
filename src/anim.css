@@ -1,0 +1,41 @@
+.hide{
+    visibility: hidden;
+    width:  0rem;
+    transition: all 1s ease-in-out;
+}
+.show{
+    visibility: visible;
+    width: 400px;
+    transition: all 1s ease-in-out;
+}
+.hide-search{
+    visibility: hidden;
+    height: 0rem;
+    transition: all 1s ease;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-200px);
+}
+.show-search{
+    visibility: visible;
+    transition: all 1s ease;
+    height: 580px;
+    overflow: hidden;
+    opacity: 1;
+}
+.loader {
+    margin: auto;
+    border: 16px solid #444; /* Light grey */
+    border-top: 16px solid var(--sec-bg-color); /* Blue */
+    border-radius: 50%;
+    width: 20px;
+    height: 10px;
+    margin-top: 7rem;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+

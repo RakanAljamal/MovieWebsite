@@ -1,0 +1,36 @@
+.movie{
+    width: 500px;
+    height: 600px;
+    border-top: 30px double #ff8340;
+    border-radius: 40px 40px 15px 5px;
+}
+.single-movie-grid{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.single-movie-component{
+    margin: auto;
+    max-width: 150rem;
+}
+.single-movie-text h1,.single-movie-text h5{
+    text-align: justify;
+
+}
+.movie-details{
+    padding: 2rem;
+    margin: 2rem;border-right: 30px double #FF8340;
+    border-radius: 40px 0px 0px 40px;
+}
+.single-movie-photo img{
+    object-fit: cover;
+}
+.single-movie-bg-primary{
+    background:#000812;
+    height: 100vh;
+    position: fixed;
+    width: 100vw;
+    color:#fff;
+}

@@ -1,0 +1,16 @@
+.homePage{
+    color:#fff;
+}
+.homePage::before{
+    content: '';
+    position: fixed;
+    background: url("https://wallpapersite.com/images/pages/pic_w/18873.jpg") no-repeat center center/cover;
+    height: 100%;
+    width: 100%;   
+    color:#fff;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    color:#fff;
+
+}

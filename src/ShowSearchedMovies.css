@@ -1,0 +1,27 @@
+.search-movie-flex{
+    display: flex;
+    color:#fff;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0px;
+    padding-bottom: 1rem;
+    border-bottom: 1px dotted #666;
+    transition: all 0.4s ease-in-out;
+}
+
+.search-movie-flex:hover{
+    cursor: pointer;
+background: #111;
+}
+.search-movie-flex-photo img{
+    margin-top: 1rem;
+    width: 100px;
+    height: 100px;
+    border-right: 5px solid var(--sec-bg-color);
+    border-radius: 0px 40px 40px 0px;
+}
+
+.search-movie-flex-title h1{
+    padding-right: 1rem;
+    font-size: 1rem;
+}
