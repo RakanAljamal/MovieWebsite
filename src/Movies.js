@@ -20,7 +20,7 @@ export default function Movies(props) {
     const [movieTitle, handleMovieTitle, resetMovieTitle] = useInputState('')
     const [movieDescription, handleMovieDescription, resetMovieDescription] = useInputState('')
     const [moviePhoto, handleMoviePhoto, resetMoviePhoto] = useInputState('')
-    const [movieYotube, handleMovieYotube, resetMovieYotube] = useInputState('')
+    const [movieYoutube, handleMovieYoutube, resetMovieYoutube] = useInputState('')
 
 
     useEffect(() => {
@@ -41,7 +41,7 @@ export default function Movies(props) {
         resetMovieTitle()
         resetMovieDescription()
         resetMoviePhoto()
-        resetMovieYotube()
+        resetMovieYoutube()
     }
     let handleSubmit = evt => {
         if (allInputsTrue()) {
@@ -49,8 +49,8 @@ export default function Movies(props) {
                 {
                     movieName: movieTitle,
                     movieDescription: movieDescription,
-                    moviePhoto: moviePhoto,
-                    movieYotube: movieYotube
+                    movieYoutube: movieYoutube,
+                    moviePhoto: moviePhoto
                 })
         }
         resetAll()
@@ -65,7 +65,7 @@ export default function Movies(props) {
         evt.preventDefault();
     }
     let allInputsTrue = () => {
-        return movieDescription && moviePhoto && movieTitle && movieYotube;
+        return movieDescription && moviePhoto && movieTitle && movieYoutube;
     }
 
     // MOVIE OPTIONS FOR ADMINS ONLY!!!
@@ -130,7 +130,7 @@ export default function Movies(props) {
             <input autoComplete="off" placeholder="Movie Name" type="text" name="movieTitle" value={movieTitle} onChange={handleMovieTitle} />
             <input autoComplete="off" placeholder="Movie Plot" type="text" name="movieDescription" value={movieDescription} onChange={handleMovieDescription} />
             <input autoComplete="off" placeholder="Movie Photo Link" type="text" name="moviePhoto" value={moviePhoto} onChange={handleMoviePhoto} />
-            <input autoComplete="off" placeholder="Movie Youtube Link" type="text" name="movieYotube" value={movieYotube} onChange={handleMovieYotube} />
+            <input autoComplete="off" placeholder="Movie Youtube Link" type="text" name="movieYoutube" value={movieYoutube} onChange={handleMovieYoutube} />
             <br />
             <div>
                 <button type="submit" className='add-button'>Add Movie</button>
