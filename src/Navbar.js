@@ -100,8 +100,8 @@ class Navbar extends Component {
                                 <input type="text" ref={this.inputRef} value={this.state.searchValue} onChange={this.handleChange} />
                             </form>
                             <NavLink exact activeClassName="active-link" to="/">Home</NavLink >
-                            <NavLink activeClassName="active-link" to="/TopRated">Top Rated</NavLink >
-                            <NavLink activeClassName="active-link" to="/Trending">Trending</NavLink >
+                            <NavLink activeClassName="active-link" to="/movie/1">Top Rated</NavLink >
+                            <NavLink activeClassName="active-link" to="/movie/2">Trending</NavLink >
                         </div>
                     </div>
                 </div >
