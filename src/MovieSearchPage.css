@@ -1,0 +1,11 @@
+.movieDetails{
+    border : solid var(--sec-bg-color) 1rem;
+    padding: 2rem;
+}
+.mobiePhoto{
+    border:10px solid var(--sec-bg-color)
+}
+.movieDetails .plot{
+    text-align: justify;
+    margin-top: 5rem;
+}

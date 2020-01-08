@@ -6,12 +6,14 @@ import "./Home.css"
 import "./All.css"
 import SingleMovie from './SingleMovie'
 import SearchedMovies from './SearchedMovies';
+import Soon from './Soon';
 function App() {
   return (
     <div className="App">
       <Switch>
         <Route exact path='/movie/:id' render={(routeProps) => <SingleMovie id={routeProps.match.params.id} />} />
         <Route exact path='/smovie/:moviename' render={(routeProps) => <SearchedMovies name={routeProps.match.params.moviename} />} />
+        <Route path='/soon' component={Soon} />
         <Route path='/' component={Home} />
       </Switch>
     </div>

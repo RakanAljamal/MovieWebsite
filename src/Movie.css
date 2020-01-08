@@ -190,3 +190,7 @@ grid-row-gap: 4rem;
     cursor: pointer;
     opacity: 1;
 }
+.or{
+    color:'#fff';
+    margin-top: 20rem;
+}

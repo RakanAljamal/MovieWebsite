@@ -5,7 +5,6 @@ import axios from 'axios'
 import "./Navbar.css"
 import "./anim.css"
 import ShowSearchedMovies from './ShowSearchedMovies';
-import { tsMethodSignature } from '@babel/types';
 class Navbar extends Component {
     constructor(props) {
         super(props);
@@ -107,8 +106,8 @@ class Navbar extends Component {
                                 </div>
 
                             <NavLink exact activeClassName="active-link" to="/">Home</NavLink >
-                            <NavLink activeClassName="active-link" to="/movie/1">Top Rated</NavLink >
-                            <NavLink activeClassName="active-link" to="/movie/2">Trending</NavLink >
+                            <NavLink activeClassName="active-link" to="/soon">Top Rated</NavLink >
+                            <NavLink activeClassName="active-link" to="/soon">Trending</NavLink >
                         </div>
                     </div>
                 </div >
