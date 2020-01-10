@@ -6,11 +6,16 @@ import Movie from "./Movie"
 import Navbar from './Navbar'
 import "./Navbar.css"
 import "./anim.css"
+import Pages from './Pages'
 import useInputState from './useInputState'
 import "./Movie.css"
 import uuid from 'uuid/v4'
 import DeleteDialog from './DeleteDialog'
 import MovieSearchPage from './MovieSearchPage'
+
+const MAXIMUM_NUMBER_OF_PAGES = 8
+
+
 export default function Movies(props) {
     const [movies, setMovies] = useState([]);
     const [addForm, showAddForm] = useState(false);
@@ -24,14 +29,19 @@ export default function Movies(props) {
     const [movieYoutube, handleMovieYoutube, resetMovieYoutube] = useInputState('')
     const [movieSearchPage, setMovieSearchPage] = useState(false);
     const [movieSearchPageProps, setMovieSearchPageProps] = useState({});
+    const [page, setPage] = useState(0);
+    const [maxPage, setMaxPage] = useState(0);
     useEffect(() => {
         let getMovies = async () => {
-            let result = await axios.get("http://192.168.1.157:8080/api/movie");
-            setMovies(result.data);
+            axios.get(`http://192.168.1.157:8080/api/test?page=${page}&size=${MAXIMUM_NUMBER_OF_PAGES}`).then(result => {
+                setMovies(result.data.content);
+                !maxPage && setMaxPage(result.data.totalElements);
+            })
+
         }
 
         getMovies();
-    }, [deleteDialog, addForm, editId])
+    }, [deleteDialog, addForm, editId, page])
 
     // ADD MOVIE FORM
 
@@ -96,7 +106,10 @@ export default function Movies(props) {
     let cancelDeleteDialog = valid => {
         showDeleteDialog(!valid)
     }
-
+    let changePages = (i) => {
+        setPage(i)
+        window.scrollTo(0, 350)
+    }
     let showMoveis = () =>
         movies.map(movie => (
             <div className='whole-movie' key={uuid()}>
@@ -145,7 +158,7 @@ export default function Movies(props) {
     let showForm =
         movieSearchPage ?
             <div className="py-8">
-                <MovieSearchPage data={movieSearchPageProps} closePage={()=>setMovieSearchPage(false)} />
+                <MovieSearchPage data={movieSearchPageProps} closePage={() => setMovieSearchPage(false)} />
             </div>
             :
             <div style={{ display: 'flex', alignContent: 'space-between', alignItems: 'space-between' }}>
@@ -172,7 +185,7 @@ export default function Movies(props) {
     let loadingMovies = <h1>loading...</h1>
 
     let addMovie =
-        <div className="addMovieId py-5">
+        <div className="addMovieId" style={{marginTop:200}}>
             <h1>Help us improve our website by making it the biggest movie library</h1>
             <button className="add-button" onClick={addMovies}>Add Movie</button>
         </div>
@@ -184,18 +197,25 @@ export default function Movies(props) {
     return (
         <>
             <Navbar />
+
             <div className="center">
                 {addMovieForm}
+                <Pages len={maxPage} changePages={changePages} page={page} MAXIMUM_NUMBER_OF_PAGES={MAXIMUM_NUMBER_OF_PAGES} />
+
                 <div className="component">
-                    {movies.length > 1 ?
+                    {movies.length > 0 ?
                         <div className='movie-grid'>
                             {
                                 showMoveis()
                             }
                         </div>
+
                         :
                         loadingMovies
+
                     }
+
+
                 </div>
                 {
                     <DeleteDialog
@@ -204,7 +224,6 @@ export default function Movies(props) {
                         deleteDialog={deleteDialog}
                         cancel={cancelDeleteDialog} />
                 }
-
             </div>
         </>
     );

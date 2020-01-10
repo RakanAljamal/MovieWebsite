@@ -1,0 +1,28 @@
+.page-outside .page-box{
+    padding: 5px 10px;
+    margin: 30px 10px;
+    align-self: center;
+    background: #222;
+    border: #999 solid 0.2rem;
+    border-radius: 20%;
+    color:#fff;
+    transition:all 0.2s ease-in-out;
+}
+.page-outside .page-box:hover{
+    cursor: pointer;
+    border:var(--sec-bg-color) 0.2rem solid;
+}
+.highlight{
+    padding: 5px 10px;
+    margin: 30px 10px;
+    align-self: center;
+    background: #222;
+    border: var(--sec-bg-color) solid 0.2rem;
+    border-radius: 20%;
+    color:#fff;
+    transition:all 0.2s ease-in-out;
+}
+
+.highlight:hover{
+    cursor: pointer;
+}
