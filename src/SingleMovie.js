@@ -6,20 +6,19 @@ import "./SingleMovie.css"
 function SingleMovie(props) {
     let [movie, setMovie] = useState();
     useEffect(() => {
-        let getMovies = async () => {
-            const result = await axios(`http://localhost:8080/api/movie/${props.id}`);
-            setMovie(result.data);
-        }
-        getMovies();
-            document.title = movie?movie.movieName : 'Loading ...'
-    }, [props.id])
+        axios.get(`http://192.168.1.157:8080/api/movie/${props.id}`).then(res => {
+            setMovie(res.data);
+            document.title=res.data.movieName;
+        })
+        console.log('Hmm')
+    }, [])
     let checkImage = (img) => {
         return img.substring(0, 4) === 'http' ? img : `/${img}`;
     }
 
 
     return (
-        window.addEventListener('changed',()=> console.log('hmmm')),
+        window.addEventListener('changed', () => console.log('hmmm')),
         <div className="single-movie-bg-primary">
             <Navbar />
 
@@ -39,9 +38,9 @@ function SingleMovie(props) {
                                 </div>
                                 <iframe width="560" height="315"
                                     src={`https://www.youtube.com/embed/${movie.movieYoutube}`}
-                                    frameBoarder="0"
+                                    frameBorder="0"
                                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen="true"
+                                    allowFullScreen={true}
                                     height="400px"
                                     width="500px"></iframe>
                             </div>
@@ -50,13 +49,25 @@ function SingleMovie(props) {
                     :
                     <h1>Loading...</h1>
                 }
-                <iframe width="1100"
-                    height="900"
-                    src="//ok.ru/videoembed/1372900427136"
-                    allow="autoplay"
-                    allowFullScreen></iframe>
+                <div className="download">
+                    <h1 onClick={
+                        () => axios({
+                            url: `http://192.168.1.157:8080/api/download/${movie.id}`,
+                            method: 'GET',
+                            responseType: 'blob', // important
+                        }).then((response) => {
+                            const url = window.URL.createObjectURL(new Blob([response.data]));
+                            const link = document.createElement('a');
+                            link.href = url;
+                            link.setAttribute('download', `${movie.movieName}.mp4`);
+                            document.body.appendChild(link);
+                            link.click();
+                            window.URL.revokeObjectURL(url);
+                        })
+                    }>Download</h1>
+                </div>
             </div>
-        </div>
+        </div >
     );
 }
 

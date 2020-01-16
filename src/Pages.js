@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './Pages.css'
+import './Movie.css'
 
 
 let Pages = ({ page, changePages, len, MAXIMUM_NUMBER_OF_PAGES }) => {
-    const numOfPages = (len / MAXIMUM_NUMBER_OF_PAGES)+ 1 ;
+    const numOfBoxesPages = (len * 1.0 / MAXIMUM_NUMBER_OF_PAGES)
+    const numOfPages = numOfBoxesPages > MAXIMUM_NUMBER_OF_PAGES ? Math.round(numOfBoxesPages) +1: Math.round(numOfBoxesPages);
+    const [couldSwap, setCouldSwap] = useState(true);
     let pagesBoxes = []
     for (let i = 1; i <= numOfPages; i++) {
         pagesBoxes.push(<span
@@ -11,9 +14,16 @@ let Pages = ({ page, changePages, len, MAXIMUM_NUMBER_OF_PAGES }) => {
             key={i}
             id={`page-box-${i}`}
             onClick={() => {
-                changePages(i - 1);
+                if (page !== i - 1 && couldSwap) {
+                    changePages( i - 1);
+                    const movieGrid = document.getElementById('movieGrid')
+                    movieGrid && movieGrid.classList.toggle('swap-movies')
+                    setCouldSwap(false)
+                    setTimeout(() => setCouldSwap(true), 1500)
+                }
             }
             }
+            disabled={true}
         > {i}</span >)
     }
 
@@ -30,7 +40,7 @@ let Pages = ({ page, changePages, len, MAXIMUM_NUMBER_OF_PAGES }) => {
     }
     return (
 
-        <div className="page-outside" style={{ display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+        <div className="page-outside" style={{ display: 'flex', justifyContent: 'center', overflow: 'hidden' }} >
             {pagesBoxes.map(box => box)}
         </div>
 

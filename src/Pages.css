@@ -26,3 +26,7 @@
 .highlight:hover{
     cursor: pointer;
 }
+#file-movie-name{
+    text-align: center;
+    margin-right: 4rem;
+}

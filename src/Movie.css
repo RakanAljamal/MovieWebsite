@@ -3,8 +3,36 @@ display: grid;
 grid-template-columns: repeat(4,1fr);
 justify-content: center;
 grid-row-gap: 4rem;
-}
+overflow: hidden;
+animation: swap-movie2 1.5s linear;
 
+}
+.swap-movies{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-content: center;
+    grid-row-gap: 4rem;
+    overflow: hidden;
+    animation: swap-movie 1.5s linear;
+}
+@keyframes swap-movie{
+    20%{transform: translateX(-100rem);}
+    25%{opacity: 0;}
+    60%{
+        opacity: 0;
+        transform: translateX(100rem);
+    }
+    75%{opacity: 1;}
+}
+@keyframes swap-movie2{
+    20%{transform: translateX(-100rem);}
+    25%{opacity: 0;}
+    60%{
+        opacity: 0;
+        transform: translateX(100rem);
+    }
+    75%{opacity: 1;}
+}
 
 .inside-photo{
     position: relative;
@@ -193,4 +221,23 @@ grid-row-gap: 4rem;
 .or{
     color:'#fff';
     margin-top: 20rem;
+}
+#browse{
+    cursor: pointer;
+}
+
+#browse::placeholder{
+    color:"#fff";
+    opacity: 1;
+}
+#file-upload{
+    display: none;
+}
+
+#showFormId #browse{
+    color:#fff;
+}
+#showFormId .loader{
+    margin-left: 9rem;
+    margin-top: 0;
 }

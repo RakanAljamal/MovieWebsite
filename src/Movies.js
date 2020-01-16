@@ -13,10 +13,10 @@ import uuid from 'uuid/v4'
 import DeleteDialog from './DeleteDialog'
 import MovieSearchPage from './MovieSearchPage'
 
-const MAXIMUM_NUMBER_OF_PAGES = 8
+const MAXIMUM_NUMBER_OF_PAGES = 4
 
 
-export default function Movies(props) {
+export default function Movies() {
     const [movies, setMovies] = useState([]);
     const [addForm, showAddForm] = useState(false);
     const [deleteDialog, showDeleteDialog] = useState(false);
@@ -31,17 +31,22 @@ export default function Movies(props) {
     const [movieSearchPageProps, setMovieSearchPageProps] = useState({});
     const [page, setPage] = useState(0);
     const [maxPage, setMaxPage] = useState(0);
+    const [showFile, setShowFile] = useState(false);
+    const [fileLoad, setFileLoad] = useState(false);
+    const [browse, setBrowse] = useState(true);
+    const [movieFileName, setMovieFileName] = useState('');
+    const [loadingMovieFileName, setLoadingMovieFileName] = useState(false);
     useEffect(() => {
         let getMovies = async () => {
-            axios.get(`http://192.168.1.157:8080/api/test?page=${page}&size=${MAXIMUM_NUMBER_OF_PAGES}`).then(result => {
-                setMovies(result.data.content);
-                !maxPage && setMaxPage(result.data.totalElements);
+            axios.get(`http://192.168.1.157:8080/api/page?page=${page}&size=${MAXIMUM_NUMBER_OF_PAGES}`).then(result => {
+                setTimeout(() => setMovies(result.data.content), 500)
+                setMaxPage(result.data.totalElements);
             })
 
         }
 
         getMovies();
-    }, [deleteDialog, addForm, editId, page])
+    }, [deleteDialog, addForm, editId, page, maxPage])
 
     // ADD MOVIE FORM
 
@@ -72,7 +77,7 @@ export default function Movies(props) {
     }
     let handleSubmit = evt => {
         if (allInputsTrue()) {
-            axios.post('http://localhost:8080/api/movie',
+            axios.post('http://192.168.1.157:8080/api/movie',
                 {
                     movieName: movieTitle,
                     movieDescription: movieDescription,
@@ -100,15 +105,16 @@ export default function Movies(props) {
         setEditId(0)
     }
     let deleteMovie = (id) => {
-        axios.delete(`http://localhost:8080/api/movie/${id}`)
+        axios.delete(`http://192.168.1.157:8080/api/movie/${id}`)
         setTimeout(() => showDeleteDialog(false), 100)
     }
     let cancelDeleteDialog = valid => {
         showDeleteDialog(!valid)
     }
     let changePages = (i) => {
+
         setPage(i)
-        window.scrollTo(0, 350)
+
     }
     let showMoveis = () =>
         movies.map(movie => (
@@ -175,6 +181,32 @@ export default function Movies(props) {
                     <input autoComplete="off" placeholder="Movie Plot" type="text" name="movieDescription" value={movieDescription} onChange={handleMovieDescription} />
                     <input autoComplete="off" placeholder="Movie Photo Link" type="text" name="moviePhoto" value={moviePhoto} onChange={handleMoviePhoto} />
                     <input autoComplete="off" placeholder="Movie Youtube Link" type="text" name="movieYoutube" value={movieYoutube} onChange={handleMovieYoutube} />
+                    {browse ? <button
+                        id="browse"
+                        type="button"
+                        onClick={() => {
+                            document.getElementById('file-upload').click();
+                            setFileLoad(true)
+                        }}
+                    >
+                        Browse
+                    </button>
+                        :
+                        <button
+                            id="browse"
+                            type="button"
+                            style={{ color: '#555', cursor: 'not-allowed' }}
+                        >
+                            Browse
+                    </button>
+                    }
+                    {
+                        movieFileName ?
+                            <h1 id="file-movie-name" style={{ textAlign: 'center ' }}>{movieFileName}</h1>
+                            :
+                            loadingMovieFileName && <div className='loader'></div>
+                    }
+                    <input type="file" id="file-upload" />
                     <br />
                     <div>
                         <button type="submit" className='add-button'>Add Movie</button>
@@ -182,10 +214,24 @@ export default function Movies(props) {
                     </div>
                 </form>
             </div>
-    let loadingMovies = <h1>loading...</h1>
+    let loadingMovies = <div className="movie-grid">
+        <Movie
+
+        />
+        <Movie
+
+        />
+        <Movie
+
+        />
+        <Movie
+
+        />
+
+    </div>
 
     let addMovie =
-        <div className="addMovieId" style={{marginTop:200}}>
+        <div className="addMovieId" style={{ marginTop: 200 }}>
             <h1>Help us improve our website by making it the biggest movie library</h1>
             <button className="add-button" onClick={addMovies}>Add Movie</button>
         </div>
@@ -194,6 +240,38 @@ export default function Movies(props) {
         <div>
             {addForm ? showForm : addMovie}
         </div>
+    const inputFile = document.getElementById("file-upload");
+    fileLoad && inputFile.addEventListener('change', function () {
+        const file = this.files[0];
+        const formData = new FormData();
+        console.log(file)
+        formData.append('file', file);
+        console.log(`---->FormData:${formData}`)
+        axios({
+            url:'http://192.168.1.157:8080/api/upload',
+            method:"POST",
+            data:formData
+        }).then(res=>{
+            alert('Worked')
+        })
+        if (fileLoad) {
+            const reader = new FileReader();
+            reader.addEventListener("load", function () {
+                setFileLoad(false);
+                setMovieFileName(file.name.substring(0, 15))
+                setBrowse(false);
+                setLoadingMovieFileName(false)
+
+               
+            })
+            reader.addEventListener("loadstart", () => setLoadingMovieFileName(true))
+            reader.readAsDataURL(file);
+
+
+        }
+
+    })
+
     return (
         <>
             <Navbar />
@@ -204,7 +282,7 @@ export default function Movies(props) {
 
                 <div className="component">
                     {movies.length > 0 ?
-                        <div className='movie-grid'>
+                        <div id='movieGrid' className='movie-grid'>
                             {
                                 showMoveis()
                             }
