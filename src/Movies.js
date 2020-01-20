@@ -12,8 +12,7 @@ import "./Movie.css"
 import uuid from 'uuid/v4'
 import DeleteDialog from './DeleteDialog'
 import MovieSearchPage from './MovieSearchPage'
-
-const MAXIMUM_NUMBER_OF_PAGES = 4
+const MAXIMUM_NUMBER_OF_PAGES = 8
 
 
 export default function Movies() {
@@ -120,7 +119,8 @@ export default function Movies() {
         movies.map(movie => (
             <div className='whole-movie' key={uuid()}>
                 {movie.id === editId ?
-                    <div className='movie-photo-no-hover'>
+                    <div className='movie-photo-no-hover'
+                    >
                         <Movie
                             id={movie.id}
                             name={movie.movieName}
@@ -129,15 +129,18 @@ export default function Movies() {
                             youtube={movie.movieYoutube}
                             edited={movie.id === editId}
                             edit={editMovie}
+
                         />
                     </div>
                     :
-                    <>
+                    <div>
                         <Link
                             to={`/movie/${movie.id}`}
                             className="no-p no-m"
                         >
-                            <div className='movie-photo'>
+                            <div className='movie-photo'
+                                id={`movie-photo-${movie.id}`}
+                            >
                                 <Movie
                                     key={uuid()}
                                     id={movie.id}
@@ -145,6 +148,7 @@ export default function Movies() {
                                     desc={movie.movieDescription}
                                     photo={movie.moviePhoto}
                                     edited={movie.id === editId}
+
                                 />
                             </div>
                         </Link>
@@ -155,12 +159,11 @@ export default function Movies() {
                                 showDeleteDialog(true)
                             }} className="far fa-trash-alt fa-2x trash"></i>
                         </div>
-                    </>
+                    </div>
                 }
 
             </div>
         ))
-
     let showForm =
         movieSearchPage ?
             <div className="py-8">
@@ -240,18 +243,19 @@ export default function Movies() {
         <div>
             {addForm ? showForm : addMovie}
         </div>
-    const inputFile = document.getElementById("file-upload");
-    fileLoad && inputFile.addEventListener('change', function () {
+
+    const inputFile = document.getElementById('file-upload');
+    inputFile && inputFile.addEventListener('change', function () {
         const file = this.files[0];
         const formData = new FormData();
         console.log(file)
         formData.append('file', file);
         console.log(`---->FormData:${formData}`)
         axios({
-            url:'http://192.168.1.157:8080/api/upload',
-            method:"POST",
-            data:formData
-        }).then(res=>{
+            url: 'http://192.168.1.157:8080/api/upload',
+            method: "POST",
+            data: formData
+        }).then(res => {
             alert('Worked')
         })
         if (fileLoad) {
@@ -262,18 +266,16 @@ export default function Movies() {
                 setBrowse(false);
                 setLoadingMovieFileName(false)
 
-               
+
             })
             reader.addEventListener("loadstart", () => setLoadingMovieFileName(true))
             reader.readAsDataURL(file);
-
-
         }
-
     })
 
     return (
         <>
+
             <Navbar />
 
             <div className="center">

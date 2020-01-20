@@ -2,10 +2,8 @@
 display: grid;
 grid-template-columns: repeat(4,1fr);
 justify-content: center;
-grid-row-gap: 4rem;
+grid-row-gap: 2rem;
 overflow: hidden;
-animation: swap-movie2 1.5s linear;
-
 }
 .swap-movies{
     display: grid;
@@ -14,6 +12,14 @@ animation: swap-movie2 1.5s linear;
     grid-row-gap: 4rem;
     overflow: hidden;
     animation: swap-movie 1.5s linear;
+}
+.swap-movies-reset{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-content: center;
+    grid-row-gap: 4rem;
+    overflow: hidden;
+    animation: swap-movie2 1.5s linear;
 }
 @keyframes swap-movie{
     20%{transform: translateX(-100rem);}
@@ -79,17 +85,14 @@ animation: swap-movie2 1.5s linear;
     margin: auto;
     width: 300px;
     transition:all 0.4s ease-in-out;
-
 }
-.movie-photo:hover {
+.movie-photo:hover ,.movie-photo:focus{
     border: .5rem solid #ff8340;
     cursor: pointer;
     overflow: hidden;
     width: 400px;
     position: relative;
     transition:all 0.4s ease-in-out;
-
-
 }
 .movie-photo:hover .movie-desc{
     overflow: hidden;
@@ -102,6 +105,7 @@ animation: swap-movie2 1.5s linear;
     margin: 0px auto;
     display: table;
 }
+
 .add-movie-form input,.add-movie-form button{
     display: block;
     background: var(--main-bg-color);

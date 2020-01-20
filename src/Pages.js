@@ -5,7 +5,7 @@ import './Movie.css'
 
 let Pages = ({ page, changePages, len, MAXIMUM_NUMBER_OF_PAGES }) => {
     const numOfBoxesPages = (len * 1.0 / MAXIMUM_NUMBER_OF_PAGES)
-    const numOfPages = numOfBoxesPages > MAXIMUM_NUMBER_OF_PAGES ? Math.round(numOfBoxesPages) +1: Math.round(numOfBoxesPages);
+    const numOfPages = Math.ceil(numOfBoxesPages);
     const [couldSwap, setCouldSwap] = useState(true);
     let pagesBoxes = []
     for (let i = 1; i <= numOfPages; i++) {
@@ -15,9 +15,14 @@ let Pages = ({ page, changePages, len, MAXIMUM_NUMBER_OF_PAGES }) => {
             id={`page-box-${i}`}
             onClick={() => {
                 if (page !== i - 1 && couldSwap) {
-                    changePages( i - 1);
+                    changePages(i - 1);
                     const movieGrid = document.getElementById('movieGrid')
-                    movieGrid && movieGrid.classList.toggle('swap-movies')
+                    if (movieGrid.classList.contains('movie-grid'))
+                        movieGrid.classList.replace('movie-grid', 'swap-movies-reset')
+                    else if (movieGrid.classList.contains('swap-movies'))
+                        movieGrid.classList.replace('swap-movies', 'swap-movies-reset')
+                    else
+                        movieGrid.classList.replace('swap-movies-reset','swap-movies')
                     setCouldSwap(false)
                     setTimeout(() => setCouldSwap(true), 1500)
                 }

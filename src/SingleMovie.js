@@ -18,7 +18,6 @@ function SingleMovie(props) {
 
 
     return (
-        window.addEventListener('changed', () => console.log('hmmm')),
         <div className="single-movie-bg-primary">
             <Navbar />
 

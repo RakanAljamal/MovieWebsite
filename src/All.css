@@ -99,8 +99,8 @@ input{
     outline:none;
 }
 .component{
+    max-width: 125rem;
     margin: auto;
-    max-width: 100rem;
 }
 .bg-primary{
     background: #000812;
