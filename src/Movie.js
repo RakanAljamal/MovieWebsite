@@ -28,10 +28,9 @@ const Movie = ({ id, name, photo, desc, youtube, edit }) => {
             <div
                 onMouseEnter={() => {
                     const selector = document.querySelector(`#movie-photo-${id}`)
-                    console.log(movieName.split(' ').join('_').toLowerCase())
                     timeout = setTimeout(() => {
                         setShowTrailer(true)
-                        selector && selector.setAttribute('style', 'width:450px')
+                        selector && selector.setAttribute('style', 'width:450px;')
                     }, WAIT_BEFORE_TRAILER * 1000);
 
                 }}

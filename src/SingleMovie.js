@@ -53,7 +53,7 @@ function SingleMovie(props) {
                         () => axios({
                             url: `http://192.168.1.157:8080/api/download/${movie.id}`,
                             method: 'GET',
-                            responseType: 'blob', // important
+                            responseType: 'blob',
                         }).then((response) => {
                             const url = window.URL.createObjectURL(new Blob([response.data]));
                             const link = document.createElement('a');

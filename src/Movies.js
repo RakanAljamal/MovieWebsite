@@ -256,7 +256,6 @@ export default function Movies() {
             method: "POST",
             data: formData
         }).then(res => {
-            alert('Worked')
         })
         if (fileLoad) {
             const reader = new FileReader();

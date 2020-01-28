@@ -2,6 +2,9 @@
     --main-bg-color:  #000812;
     --sec-bg-color : #ff8340;
   }
+  body{
+      overflow: hidden;
+  }
 .py-10{
 padding: 10rem 0;
 }
