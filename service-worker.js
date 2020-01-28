@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Yallamovie/precache-manifest.fb2947271c82ef56c59edb24944775d8.js"
+  "/Yallamovie/precache-manifest.76f04b2b4e7d379b13b2040ae3c3af92.js"
 );
 
 self.addEventListener('message', (event) => {

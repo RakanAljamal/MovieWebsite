@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "10009fee369d71a179974ff4292c68fc",
+    "revision": "da70d8508f712e843c06002026d2f48d",
     "url": "/Yallamovie/index.html"
   },
   {
-    "revision": "96b5b6dd6eb0afc794b1",
+    "revision": "a4bcc5b7f8f255964e8a",
     "url": "/Yallamovie/static/css/main.6b911b83.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Yallamovie/static/js/2.2c9f3477.chunk.js.LICENSE"
   },
   {
-    "revision": "96b5b6dd6eb0afc794b1",
-    "url": "/Yallamovie/static/js/main.c6bcd3a1.chunk.js"
+    "revision": "a4bcc5b7f8f255964e8a",
+    "url": "/Yallamovie/static/js/main.2cd563f1.chunk.js"
   },
   {
     "revision": "a467cb899d47665cf9cf",
