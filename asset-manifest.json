@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Yallamovie/static/css/main.6b911b83.chunk.css",
+    "main.js": "/Yallamovie/static/js/main.c6bcd3a1.chunk.js",
+    "main.js.map": "/Yallamovie/static/js/main.c6bcd3a1.chunk.js.map",
+    "runtime-main.js": "/Yallamovie/static/js/runtime-main.fafe740e.js",
+    "runtime-main.js.map": "/Yallamovie/static/js/runtime-main.fafe740e.js.map",
+    "static/js/2.2c9f3477.chunk.js": "/Yallamovie/static/js/2.2c9f3477.chunk.js",
+    "static/js/2.2c9f3477.chunk.js.map": "/Yallamovie/static/js/2.2c9f3477.chunk.js.map",
+    "index.html": "/Yallamovie/index.html",
+    "precache-manifest.fb2947271c82ef56c59edb24944775d8.js": "/Yallamovie/precache-manifest.fb2947271c82ef56c59edb24944775d8.js",
+    "service-worker.js": "/Yallamovie/service-worker.js",
+    "static/css/main.6b911b83.chunk.css.map": "/Yallamovie/static/css/main.6b911b83.chunk.css.map",
+    "static/js/2.2c9f3477.chunk.js.LICENSE": "/Yallamovie/static/js/2.2c9f3477.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fafe740e.js",
+    "static/js/2.2c9f3477.chunk.js",
+    "static/css/main.6b911b83.chunk.css",
+    "static/js/main.c6bcd3a1.chunk.js"
+  ]
+}
