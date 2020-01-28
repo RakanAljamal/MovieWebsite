@@ -6,7 +6,7 @@ import "./SingleMovie.css"
 function SingleMovie(props) {
     let [movie, setMovie] = useState();
     useEffect(() => {
-        axios.get(`http://192.168.1.157:8080/api/movie/${props.id}`).then(res => {
+        axios.get(`http://localhost:8080/api/movie/${props.id}`).then(res => {
             setMovie(res.data);
             document.title=res.data.movieName;
         })
@@ -51,7 +51,7 @@ function SingleMovie(props) {
                 <div className="download">
                     <h1 onClick={
                         () => axios({
-                            url: `http://192.168.1.157:8080/api/download/${movie.id}`,
+                            url: `http://localhost:8080/api/download/${movie.id}`,
                             method: 'GET',
                             responseType: 'blob',
                         }).then((response) => {
