@@ -12,7 +12,7 @@ export default function SearchedMovies(props) {
     const [movies, setMovies] = useState([]);
     useEffect(() => {
         let getMovies = async () => {
-            let result = await axios.get(`http://localhost:8080/api/smovie/${props.name}`);
+            let result = await axios.get(`http://aljamal.club/api/smovie/${props.name}`);
             setMovies(result.data);
         }
         getMovies();

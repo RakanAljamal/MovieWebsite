@@ -12,7 +12,7 @@ const Movie = ({ id, name, photo, desc, youtube, edit }) => {
     let timeout;
     let handleEdit = e => {
         e.preventDefault();
-        axios.put('http://localhost:8080/api/movie',
+        axios.put('http://aljamal.club/api/movie',
             {
                 id,
                 movieName,

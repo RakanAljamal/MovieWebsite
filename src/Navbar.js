@@ -33,7 +33,7 @@ class Navbar extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevState.searchValue !== this.state.searchValue) {
             let getMovies = async () => {
-                let result = await axios.get(`http://localhost:8080/api/smovie/${this.state.searchValue}?limit=4`);
+                let result = await axios.get(`http://aljamal.club/api/smovie/${this.state.searchValue}?limit=4`);
                 this.setState({ sResult: result.data })
             }
             getMovies();

@@ -5,7 +5,7 @@ import axios from 'axios'
 let MovieSearchPage = ({ data, closePage }) => {
     let { Title, Year, Plot, Poster } = data;
     let handleSubmit = evt => {
-        axios.post('http://localhost:8080/api/movie',
+        axios.post('http://aljamal.club/api/movie',
             {
                 movieName: Title,
                 movieDescription: Plot,

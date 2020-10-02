@@ -37,7 +37,7 @@ export default function Movies() {
     const [loadingMovieFileName, setLoadingMovieFileName] = useState(false);
     useEffect(() => {
         let getMovies = async () => {
-            axios.get(`http://localhost:8080/api/page?page=${page}&size=${MAXIMUM_NUMBER_OF_PAGES}`).then(result => {
+            axios.get(`http://aljamal.club/api/page?page=${page}&size=${MAXIMUM_NUMBER_OF_PAGES}`).then(result => {
                 setTimeout(() => setMovies(result.data.content), 500)
                 setMaxPage(result.data.totalElements);
             })
@@ -76,7 +76,7 @@ export default function Movies() {
     }
     let handleSubmit = evt => {
         if (allInputsTrue()) {
-            axios.post('http://localhost:8080/api/movie',
+            axios.post('http://aljamal.club/api/movie',
                 {
                     movieName: movieTitle,
                     movieDescription: movieDescription,
@@ -104,7 +104,7 @@ export default function Movies() {
         setEditId(0)
     }
     let deleteMovie = (id) => {
-        axios.delete(`http://localhost:8080/api/movie/${id}`)
+        axios.delete(`http://aljamal.club/api/movie/${id}`)
         setTimeout(() => showDeleteDialog(false), 100)
     }
     let cancelDeleteDialog = valid => {
@@ -252,7 +252,7 @@ export default function Movies() {
         formData.append('file', file);
         console.log(`---->FormData:${formData}`)
         axios({
-            url: 'http://localhost:8080/api/upload',
+            url: 'http://aljamal.club/api/upload',
             method: "POST",
             data: formData
         }).then(res => {
